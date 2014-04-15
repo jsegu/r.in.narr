@@ -50,7 +50,7 @@ COPYRIGHT:  (c) 2011-2014 Julien Seguinot
 #% answer: narr_
 #%end
 
-from numpy as flipud            # scientific module Numpy [2]
+from numpy import flipud        # scientific module Numpy [2]
 from netCDF4 import Dataset     # interface to netCDF4 library [3]
 from grass.script import core as grass
 from grass.script import array as garray
@@ -85,7 +85,7 @@ def main():
         grass.message('Importing ' + mapname + ' ...')
 
         # import data with grass array
-        a[:] = np.flipud(timeslice)
+        a[:] = flipud(timeslice)
         a.write(mapname=mapname, overwrite=True, null=-32767)
 
 if __name__ == "__main__":
