@@ -3,12 +3,12 @@
 """
 MODULE:     r.in.narr
 
-AUTHOR(S):  Julien Seguinot <julien.seguino@natgeo.su.se>.
+AUTHOR(S):  Julien Seguinot <seguinot@vaw.baug.ethz.ch>.
 
 PURPOSE:    Import North American Regional Reanalysis fields from the ESRL
             Physical Science Division [1] netCDF data files.
 
-COPYRIGHT:  (c) 2011-2014 Julien Seguinot
+COPYRIGHT:  (c) 2011-2016 Julien Seguinot
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,6 +23,13 @@ COPYRIGHT:  (c) 2011-2014 Julien Seguinot
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
+# Todo:
+# * (0.1)
+#  - upload to GRASS repo/wiki
+#  - add minimal HTML docs
+# * (0.2)
+#  - interactive download
 
 #%Module
 #% description: Import North American Regional Reanalysis netCDF data files
@@ -50,8 +57,8 @@ COPYRIGHT:  (c) 2011-2014 Julien Seguinot
 #% answer: narr_
 #%end
 
-from numpy import flipud        # scientific module Numpy [2]
-from netCDF4 import Dataset     # interface to netCDF4 library [3]
+from numpy import flipud        # [2]
+from netCDF4 import Dataset     # [3]
 from grass.script import core as grass
 from grass.script import array as garray
 
@@ -82,7 +89,7 @@ def main():
     a = garray.array()
     for (i, timeslice) in enumerate(data):
         mapname = prefix + '%02i' % (i+1)
-        grass.message('Importing ' + mapname + ' ...')
+        grass.message("Importing <%s> ..." % mapname)
 
         # import data with grass array
         a[:] = flipud(timeslice)
